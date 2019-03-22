@@ -1,0 +1,5 @@
+version 1.0.0.0 (2.22 KB) by Vladimir Bychkovsky
+Updated 16 Jun 2008
+
+see 
+https://www.mathworks.com/matlabcentral/fileexchange/20292-hsl2rgb-and-rgb2hsl-conversion
