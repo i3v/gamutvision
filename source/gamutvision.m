@@ -117,10 +117,6 @@ else             % Standalone (compiled) application. Must start in same directo
    % dosret = dos('copy  "gamutstart.bat" "start2.bat"');
 end
 
-% From http://www.mathworks.com/support/solutions/data/1-H3S5V.html?solution=1-H3S5V
-% opengl bug fix. THIS MIGHT HAVE FIXED LIGHTING CRASH!
-feature('usegenericopengl',1)
-
 % Things seem to work better if the buttons, which change, are set here.
 handles.defbg   = get(0,'defaultUicontrolBackgroundColor');  % Default background color
 handles = gray_buttons(handles);
