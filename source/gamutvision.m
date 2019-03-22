@@ -43,6 +43,11 @@ else
 end
 % End initialization code - DO NOT EDIT
 
+% --- Executes on figure close request
+function shutdown_gv(hObject, eventdata, handles, varargin)
+% Reuse callback for File->Close
+CloseMenuItem_Callback(hObject, eventdata, handles)
+
 % --- Executes just before gamutvision is made visible.
 function gamutvision_OpeningFcn(hObject, eventdata, handles, varargin)
 % To do: save settings. Test input profiles with CMYK. Fix tonal response.
@@ -51,7 +56,6 @@ function gamutvision_OpeningFcn(hObject, eventdata, handles, varargin)
 
 global versname versnum diagnostics  compvers
 versname = 'Gamutvision';
-%#function shutdown_gv
 format compact;  % for testing/debugging
 
 
@@ -83,7 +87,7 @@ handles.nsav = handles.nrun;
 handles.version = '1.4';
 versnum = handles.version;  imavers = 0;  % For compatibility with about_imatest.m.
 set(handles.gamutvision_fig, 'Name', ['Gamutvision ' handles.version], ...
-   'CloseRequestFcn','shutdown_gv');  % For fig file
+   'CloseRequestFcn',@(hObj,eventdata) shutdown_gv(hObj,eventdata,handles));  % For fig file
 
 
 % datxtexp  = '15-Aug-2006';  datexp = datenum(datxtexp);
