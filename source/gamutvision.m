@@ -691,7 +691,7 @@ function handles = geticc(hObject, handles, nicc);     % GET ICC PROFILE NAME
 % handles.fullsave{} is used for recovering last named ICC file from objstring(7).
 objstring = get(hObject,'String');  % Profile selection string. First 6 items never change.
 if handles.initialize  % Initialize: Do not call uigetfile.
-   [pathname,name,ext,versn] = fileparts(handles.fullname{nicc});  % Read in.
+   [pathname,name,ext] = fileparts(handles.fullname{nicc});  % Read in.
    handles.iccname{nicc} = [name ext];    % In handles so it can be used as a title.
 	objstring{7} = [name ext];
 	set(hObject, 'String', objstring);     % Store loaded name in this value.
@@ -731,7 +731,7 @@ elseif handles.profile(nicc)==1              % Read ICC profile from file.
       if    ((nicc==1 | nicc==3) & strcmpi(iccout.dataCS,'CmykData'  ))  %  | ...
             %  ((nicc==2 | nicc==4) & strcmpi(iccout.type,  'InputClass'))  % ??? type never set???
          handles.fulltemp{nicc} = handles.fullsave{nicc};  % Restore previous value.
-         [pathname,name,ext,versn] = fileparts(handles.fulltemp{nicc});
+         [pathname,name,ext] = fileparts(handles.fulltemp{nicc});
          handles.iccname{nicc} = [name ext];
          handles.fullname = handles.fulltemp;
 		   set(hObject, 'Value' , 7);  % Set value to display.
@@ -762,7 +762,7 @@ elseif handles.profile(nicc)==1              % Read ICC profile from file.
 	set(hObject, 'Value' , 7);  % Set value to display.
 elseif handles.profile(nicc)==7  % Restore previous name.
    handles.fulltemp{nicc} = handles.fullsave{nicc};  % Saved file back into current file.
-   [pathname,name,ext,versn] = fileparts(handles.fulltemp{nicc});
+   [pathname,name,ext] = fileparts(handles.fulltemp{nicc});
    handles.iccname{nicc} = [name ext];
    handles.fullname      = handles.fulltemp; 
    handles.cmyk(nicc)    = handles.cmyksave(nicc);
@@ -779,12 +779,12 @@ elseif (nicc~=3 & handles.profile(nicc)==8) | (nicc==3 & handles.profile(nicc)==
       path_ui, browsetext);  % Recent file name 
    if isempty(fname)  % Cancel read
       handles.fulltemp{nicc} = handles.fullsave{nicc};  % Saved file back into current file.
-      [pathname,name,ext,versn] = fileparts(handles.fulltemp{nicc});
+      [pathname,name,ext] = fileparts(handles.fulltemp{nicc});
       handles.iccname{nicc}  = [name ext];
       handles.fullname       = handles.fulltemp;
       handles.cmyk(nicc)     = handles.cmyksave(nicc);
    else       % File name returned (not cancelled)
-      [pathname,name,ext,versn] = fileparts(fname);
+      [pathname,name,ext] = fileparts(fname);
       handles.iccname{nicc}  = [name ext];  % pathname has trailing filesep.
       handles.fullname{nicc} = fname;
       handles.fulltemp{nicc} = handles.fullname{nicc}; 
@@ -793,7 +793,7 @@ elseif (nicc~=3 & handles.profile(nicc)==8) | (nicc==3 & handles.profile(nicc)==
       if    ((nicc==1 | nicc==3) & strcmpi(iccout.dataCS,'CmykData'  ))  %  | ...
             %  ((nicc==2 | nicc==4) & strcmpi(iccout.type,  'InputClass'))  % ??? type never set???
          handles.fulltemp{nicc} = handles.fullsave{nicc};  % Restore previous value.
-         [pathname,name,ext,versn] = fileparts(handles.fulltemp{nicc});
+         [pathname,name,ext] = fileparts(handles.fulltemp{nicc});
          handles.iccname{nicc} = [name ext];
          handles.fullname = handles.fulltemp;
 		   set(hObject, 'Value' , 7);  % Set value to display.
@@ -2176,7 +2176,7 @@ end
 % Deal with blanks in path name: Must store.
 handles.montemp = handles.monprof;  % *sRGB or no blanks in name.
 if findstr(handles.monprof, ' ')         % Blanks in file name.
-   [pathname,name,ext,versn] = fileparts(handles.monprof);  % Read in.
+   [pathname,name,ext] = fileparts(handles.monprof);  % Read in.
    monfile = [name ext];    % File name only; Omit path.
    icctemp = strrep(monfile,' ','_');    % Replace blanks with underscores.
    handles.montemp = [tempdir icctemp];  % Matlab system temp path name to use (save)
