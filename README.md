@@ -1,3 +1,11 @@
+# Description
+
+This is a naive attempt to modify the original, to make it work with Matlab R2018b, Windows 10.
+This proved to require re-building old LittleCMS, and some parts of code seem to be missing.
+So, for now, I gave up.
+
+---------------------------------------------------------------------------------
+
 # Gamutvision
 
 Gamutvision™ is a gamut viewer and much more. It is a powerful tool for learning color management, exploring its functions, and proofing color workflows. With Gamutvision you can
